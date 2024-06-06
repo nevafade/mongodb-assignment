@@ -1,0 +1,16 @@
+mongoimport --db enrolment --collection grouped_data --jsonArray --file grouped_data.json
+mongoimport --db enrolment --collection units --jsonArray --file units.json
+mongoimport --db enrolment --collection self_rel --jsonArray --file self_rel.json
+
+
+use enrolment
+db.grouped_data.createIndex({Name: 1 })
+db.grouped_data.createIndex({Grade:1})
+db.grouped_data.createIndex({CreditPointAttempted: 1 })
+db.grouped_data.createIndex({CreditPointPassed: 1 })
+db.grouped_data.createIndex({'course_details.Level': 1 })
+db.units.createIndex({Code:1})
+db.self_rel.createIndex({type:1 })
+db.self_rel.createIndex({for:1 })
+db.self_rel.createIndex({uc:1 })
+db.self_rel.createIndex({refCode:1 })
